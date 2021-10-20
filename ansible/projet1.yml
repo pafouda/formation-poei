@@ -1,0 +1,24 @@
+- name: Project1
+  hosts: all
+  become: yes
+  tasks:
+    - name: Installe Apache + PHP
+      apt: name={{ item }} state=latest
+      loop: ['apache2', 'php', 'libapache2-mod-php'] 
+    
+    - name: Copie du fichier index.php
+      copy:
+        src: files/index.php
+        dest: /var/www/html
+        owner: osboxes
+        group: osboxes
+        
+    - name: Suppression du fichier index.html
+      file:
+        path: /var/www/html/index.html
+        state: absent 
+
+    - name: Création du groupe developers
+      group: 
+        name: developers
+        state: present 
