@@ -7,4 +7,4 @@
         path: /etc/sudoers
         regexp: '^%sudo'
         line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-        validate: 'visudo -cf %s'
+        validate: 'visudo -cf %s' # validation syntaxique du fichier
